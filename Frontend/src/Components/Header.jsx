@@ -1,24 +1,24 @@
 import logo from '../assets/logo.png';
 import './Header.css';
 import { Link } from 'react-router-dom';
-import { useState, useEffect, useRef } from 'react'; // Import useState, useEffect, and useRef hooks
+import { useState, useEffect, useRef } from 'react';
 
 const Header = () => {
-  const [isOpen, setIsOpen] = useState(false); // State to track whether sidebar is open or closed
-  const sidebarRef = useRef(null); // Reference to the sidebar element
+  const [isOpen, setIsOpen] = useState(false);
+  const sidebarRef = useRef(null);
 
   const toggleSidebar = () => {
-    setIsOpen(!isOpen); // Toggle the state
+    setIsOpen(!isOpen);
   };
 
   const closeSidebar = () => {
-    setIsOpen(false); // Close the sidebar
+    setIsOpen(false);
   };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
-        setIsOpen(false); // Close the sidebar if clicked outside of it
+        setIsOpen(false);
       }
     };
 
@@ -27,6 +27,8 @@ const Header = () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+
+  const isAuthenticated = false; // Set to true if the user is authenticated
 
   return (
     <div>
@@ -50,18 +52,23 @@ const Header = () => {
               <li>
                 <Link to="/contact" onClick={closeSidebar}>Contact</Link>
               </li>
-              <li>
-                <Link to="/login" onClick={closeSidebar}>Login</Link>
-              </li>
+              {isAuthenticated ? (
+                <li>
+                  <Link to="/login" onClick={closeSidebar}>Login</Link>
+                </li>
+              ) : (
+                <li>
+                  <Link to="/register" onClick={closeSidebar}>Register</Link>
+                </li>
+              )}
             </ul>
           </nav>
           <div className={`breadcrumb ${isOpen ? 'open' : ''}`} onClick={toggleSidebar}>
-          <div className="line"></div>
-          <div className="line"></div>
-          <div className="line"></div>
+            <div className="line"></div>
+            <div className="line"></div>
+            <div className="line"></div>
+          </div>
         </div>
-        </div>
-     
       </div>
     </div>
   );
