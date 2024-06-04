@@ -1,0 +1,80 @@
+/* TripSelector.css */
+.trip-selector {
+    position: absolute; /* Absolute position within the carousel */
+    top: 56%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Offset to truly center */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 10; /* Ensure it's above the carousel */
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .trip-selector h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .selector-group {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  .selector-group label {
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .selector-group input {
+    width: 60px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+  }
+  
+  .trip-selector-btn {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .trip-selector-btn:hover {
+    background-color: #45a049;
+  }
+  
+  @media (max-width: 480px) {
+    .trip-selector {
+      width: 90%;
+      padding: 10px;
+    }
+  
+    .selector-group {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .selector-group label,
+    .selector-group input {
+      width: 100%;
+      margin-bottom: 5px;
+    }
+  
+    .trip-selector-btn {
+      width: 100%;
+    }
+  }
+  

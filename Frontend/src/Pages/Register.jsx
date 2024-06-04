@@ -1,16 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import Modal from 'react-modal';
 import './Register.css';
-
+Modal.setAppElement('#root');
 const RegistrationForm = () => {
   const [form, setForm] = useState({
     firstname: '',
     lastname: '',
     email: '',
     phone: '',
-    password: '',
-    confirmPassword: ''
+   
   });
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    if (location.state) {
+      const { adults, children, days } = location.state;
+    //   console.log("Trip Details:", adults, children, days);
+    }
+  }, [location.state]);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -22,19 +32,33 @@ const RegistrationForm = () => {
       alert('Passwords do not match');
       return;
     }
-    const { confirmPassword, ...formData } = form;
+  
+    // Extract adults, children, and days from location state
+    const { adults, children, days } = location.state;
+  
+    // Combine form data and trip details
+    const formDataWithTrip = {
+      ...form,
+      adults,
+      children,
+      days,
+    };
+
     try {
       const response = await fetch('http://localhost:5000/api/users/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formDataWithTrip), // Send combined form data with trip details
       });
+  
       const result = await response.json();
       if (response.ok) {
-        alert('Registration successful');
-       window.location.href='/';
+        setModalIsOpen(true); // Show modal
+        setTimeout(() => {
+          navigate('/');
+        }, 2000); // Navigate after 2000ms (2 seconds)
       } else {
         alert(result.message || 'Registration failed');
       }
@@ -42,6 +66,13 @@ const RegistrationForm = () => {
       console.error('Error:', error);
       alert('An error occurred. Please try again.');
     }
+  };
+  
+  
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+    navigate('/'); // Redirect to home page after closing the modal
   };
 
   return (
@@ -63,16 +94,46 @@ const RegistrationForm = () => {
           <label htmlFor="phone">Phone Number:</label>
           <input type="tel" id="phone" name="phone" value={form.phone} onChange={handleChange} required />
         </div>
-        <div className="form-group">
-          <label htmlFor="password">Password:</label>
-          <input type="password" id="password" name="password" value={form.password} onChange={handleChange} required />
-        </div>
-        <div className="form-group">
-          <label htmlFor="confirmPassword">Confirm Password:</label>
-          <input type="password" id="confirmPassword" name="confirmPassword" value={form.confirmPassword} onChange={handleChange} required />
-        </div>
-        <button type="submit">Register</button>
+        <button type="submit">Book Now</button>
       </form>
+
+      <Modal
+  isOpen={modalIsOpen}
+  onRequestClose={closeModal}
+  contentLabel="Registration Successful"
+  style={{
+    overlay: {
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background
+      display: 'flex',
+      justifyContent: 'center', // Center horizontally
+      alignItems: 'center', // Center vertically
+    
+    },
+    content: {
+      position: 'relative',
+      backgroundColor: 'white',
+      borderRadius: '5px',
+      boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
+      padding: '20px',
+      maxWidth: '80%', // Adjust the width as needed
+      maxHeight: '80%', // Adjust the height as needed
+      overflowY: 'auto', // Enable vertical scrolling if content exceeds the height
+     left: -5,
+    }
+  }}
+>
+  <div className="popup-content">
+    <h2>Booking Successful</h2>
+    <p>Thank you for booking. We will reach out to you shortly. You will be redirected to the home page.</p>
+    <button onClick={closeModal}>Close</button>
+  </div>
+</Modal>
+
     </div>
   );
 };

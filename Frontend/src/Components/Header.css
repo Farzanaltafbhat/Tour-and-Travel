@@ -113,4 +113,30 @@
   .logo img {
     margin-left: auto; /* Move logo to the right in mobile view */
   }
+
+}
+@media screen and (min-width: 769px){
+  
+
+.btn{
+  width: fit-content;
+  padding: 5px;
+  background-color: #0E82FD;
+  border: 1px solid #0E82FD;
+  border-radius: 3px;
+  color: white;
+
+
+}
+
+.btn:hover{
+  border: 1px solid #0E82FD !important;
+}
+.textbtn{
+  color: white !important;
+  padding: 8px;
+}
+.textbtn:hover{
+  color: #0E82FD !important;
+}
 }

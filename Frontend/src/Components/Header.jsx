@@ -57,8 +57,8 @@ const Header = () => {
                   <Link to="/login" onClick={closeSidebar}>Login</Link>
                 </li>
               ) : (
-                <li>
-                  <Link to="/register" onClick={closeSidebar}>Register</Link>
+                <li  className='btn'>
+                  <Link to="/register" onClick={closeSidebar} > <i className='textbtn'>Book Now</i> </Link>
                 </li>
               )}
             </ul>

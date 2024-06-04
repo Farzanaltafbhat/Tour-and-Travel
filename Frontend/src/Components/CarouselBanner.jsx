@@ -26,7 +26,7 @@ const BannerCarousel = () => {
                     <img src={banner1} alt="Banner 1" />
                     <div className='text-container'>
                         <div className="banner-text"><h3 className='h3'>Get Upto 50% OFF on</h3>
-                            <h2 className='h2'>Joy Short And Happy Trip</h2> </div>
+                            <h2 className='h2'>Short And Happy Trip</h2> </div>
                     </div>
                     <div className="white-line"></div> {/* White line */}
                 </div>
@@ -34,7 +34,7 @@ const BannerCarousel = () => {
                     <img src={banner2} alt="Banner 2" />
                     <div className='text-container'>
                         <div className="banner-text"><h3 className='h3'>Get Upto 50% OFF on</h3>
-                            <h2 className='h2'>Joy Promotional Package</h2> </div>
+                            <h2 className='h2'>Promotional Package</h2> </div>
                     </div>
                     <div className="white-line"></div> {/* White line */}
                 </div>
@@ -42,9 +42,9 @@ const BannerCarousel = () => {
                     <img src={banner3} alt="Banner 3" />
                     <div className='text-container'>
                         <div className="banner-text"><h3 className='h3'>Get Upto 50% OFF on</h3>
-                            <h2 className='h2'>Joy Family Travel</h2> </div>
+                            <h2 className='h2'>Family Travel</h2> </div>
                     </div>
-                    <div className="white-line"></div> {/* White line */}       </div>
+               </div>
             </Slider>
         </div>
     );

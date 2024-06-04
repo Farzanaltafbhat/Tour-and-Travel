@@ -104,8 +104,6 @@
     .footer-section:not(:last-child) {
       margin-bottom: 2rem; /* Add spacing between sections */
     }
-    .name{
-        margin-left: -25px;
-    }
+
   }
   
