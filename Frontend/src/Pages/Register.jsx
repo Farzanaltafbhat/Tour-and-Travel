@@ -45,7 +45,7 @@ const RegistrationForm = () => {
     };
 
     try {
-      const response = await fetch('http://localhost:5000/api/users/register', {
+      const response = await fetch('https://kashmirtour.netlify.app/.netlify/functions/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
